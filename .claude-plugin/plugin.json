@@ -1,0 +1,12 @@
+{
+  "name": "human-facing-output",
+  "description": "人間が読む文章から、RL 由来の書き癖（誰も挙げていない選択肢の否定、根拠のない留保、経緯の語り、引用節、過剰なリンク）を削る Agent Skill",
+  "author": {
+    "name": "kongyo2",
+    "url": "https://github.com/kongyo2"
+  },
+  "homepage": "https://github.com/kongyo2/human-facing-output",
+  "repository": "https://github.com/kongyo2/human-facing-output",
+  "license": "MIT",
+  "keywords": ["agent-skills", "writing", "commit-messages", "pull-requests", "code-review"]
+}

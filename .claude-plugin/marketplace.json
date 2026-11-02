@@ -1,0 +1,14 @@
+{
+  "name": "human-facing-output",
+  "description": "human-facing-output プラグインの配布用マーケットプレイス",
+  "owner": {
+    "name": "kongyo2"
+  },
+  "plugins": [
+    {
+      "name": "human-facing-output",
+      "source": "./",
+      "description": "人間が読む文章から、RL 由来の書き癖（誰も挙げていない選択肢の否定、根拠のない留保、経緯の語り、引用節、過剰なリンク）を削る Agent Skill"
+    }
+  ]
+}
