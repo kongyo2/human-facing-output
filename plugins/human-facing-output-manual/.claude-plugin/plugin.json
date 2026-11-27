@@ -1,0 +1,19 @@
+{
+  "name": "human-facing-output-manual",
+  "version": "2.0.0",
+  "description": "human-facing-output の手動呼び出し版。自動では読み込まれず、/human-facing-output-manual:human-facing-output で呼んだときだけ使う",
+  "author": {
+    "name": "kongyo2",
+    "url": "https://github.com/kongyo2"
+  },
+  "homepage": "https://github.com/kongyo2/human-facing-output",
+  "repository": "https://github.com/kongyo2/human-facing-output",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "writing",
+    "technical-writing",
+    "reports",
+    "concision"
+  ]
+}

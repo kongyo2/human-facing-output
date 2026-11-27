@@ -9,6 +9,11 @@
       "name": "human-facing-output",
       "source": "./",
       "description": "人間が読む文章を、読み手の問いに答える分だけに圧縮して書くための Agent Skill。RL 由来の「迷ったら書く」（作業の経緯、確認の列挙、念のための留保、作業側の事情）を抑える"
+    },
+    {
+      "name": "human-facing-output-manual",
+      "source": "./plugins/human-facing-output-manual",
+      "description": "human-facing-output の手動呼び出し版。自動では読み込まれず、/human-facing-output-manual:human-facing-output で呼んだときだけ使う"
     }
   ]
 }

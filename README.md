@@ -33,6 +33,16 @@ claude plugin install human-facing-output@human-facing-output
 
 該当する文章を書くときに自動で読み込まれます。明示的に使うときは `/human-facing-output:human-facing-output` を実行します。
 
+### 呼んだときだけ使う版
+
+自動で読み込ませたくない場合は、代わりに `human-facing-output-manual` を入れます。Skill の中身は同じで、frontmatter に `disable-model-invocation: true` を足してあります。
+
+```
+/plugin install human-facing-output-manual@human-facing-output
+```
+
+`/human-facing-output-manual:human-facing-output` を実行したときだけ読み込まれます。
+
 Agent Skills に対応したほかのツールでは、`skills/human-facing-output/` をそのツールの skills ディレクトリに置いてください。
 
 ## 構成
@@ -42,10 +52,11 @@ Agent Skills に対応したほかのツールでは、`skills/human-facing-outp
 | `skills/human-facing-output/SKILL.md` | Skill の本体 |
 | `skills/human-facing-output/references/examples.md` | 場面の違う例 |
 | `skills/human-facing-output/references/background.md` | 方針の根拠と出典 |
+| `plugins/human-facing-output-manual/` | 呼んだときだけ使う版。`scripts/sync-manual.sh` が上の本体から作る |
 
 ## English
 
-An Agent Skill, written in Japanese, for any text a human will read. Models post-trained with RL write for a grader that reads everything and penalizes only omissions, so they include whenever in doubt. This skill reverses that default: before writing, the agent picks one reader, lists at most three questions that reader would ask, answers only those, and stops. What the reader already has, can derive, or that is about the writer (process, hedges, backstory) stays out and is not moved elsewhere. Install it with the commands above.
+An Agent Skill, written in Japanese, for any text a human will read. Models post-trained with RL write for a grader that reads everything and penalizes only omissions, so they include whenever in doubt. This skill reverses that default: before writing, the agent picks one reader, lists at most three questions that reader would ask, answers only those, and stops. What the reader already has, can derive, or that is about the writer (process, hedges, backstory) stays out and is not moved elsewhere. Install it with the commands above. A second plugin, `human-facing-output-manual`, ships the same skill with `disable-model-invocation: true`, so it loads only when you run its slash command.
 
 ## ライセンス
 
