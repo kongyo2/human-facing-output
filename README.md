@@ -45,18 +45,6 @@ claude plugin install human-facing-output@human-facing-output
 
 Agent Skills に対応したほかのツールでは、`skills/human-facing-output/` をそのツールの skills ディレクトリに置いてください。
 
-## 構成
-
-| パス | 内容 |
-|---|---|
-| `skills/human-facing-output/SKILL.md` | Skill の本体 |
-| `skills/human-facing-output/references/examples.md` | 場面の違う例 |
-| `skills/human-facing-output/references/background.md` | 方針の根拠と出典 |
-| `plugins/human-facing-output-manual/` | 呼んだときだけ使う版。`scripts/sync-manual.sh` が上の本体から作る |
-
-## English
-
-An Agent Skill, written in Japanese, for any text a human will read. Models post-trained with RL write for a grader that reads everything and penalizes only omissions, so they include whenever in doubt. This skill reverses that default: before writing, the agent picks one reader, lists at most three questions that reader would ask, answers only those, and stops. What the reader already has, can derive, or that is about the writer (process, hedges, backstory) stays out and is not moved elsewhere. Install it with the commands above. A second plugin, `human-facing-output-manual`, ships the same skill with `disable-model-invocation: true`, so it loads only when you run its slash command.
 
 ## ライセンス
 
