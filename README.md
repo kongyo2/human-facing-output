@@ -1,20 +1,19 @@
 # human-facing-output
 
-人間が読む文章から、RL の学習環境で身についた書き癖を削る Agent Skill です。Claude Code のプラグインとして入れられます。
+人間が読む文章を、読み手の問いに答える分だけに圧縮して書くための Agent Skill です。Claude Code のプラグインとして入れられます。
 
 ## 何をするか
 
-回答、作業後の報告、コミットメッセージ、PR の説明、コードコメント、ドキュメント、記事などを書くときに、次の書き癖を読み手の都合に合わせて削ります。
+RL で後学習されたモデルは、採点者に向けて書く癖を持っています。採点者は全部を読み、書き漏らしだけを減点するので、「迷ったら書く」が既定になります。人間の読み手は注意と時間に限りがあり、文章は残ってユーザーの名前で出ていくので、既定は逆になります。
 
-- 誰も挙げていない選択肢を「A ではない。B でもない」と打ち消す
-- 根拠のない留保や予防線を足す
-- 作業やレビューの経緯を語る
-- 「〜という指摘があった」「〜としている」のように伝聞の形で書く
-- 出典リンクや時点注記を多めに付ける
+この Skill は、書き癖を一つずつ挙げて削らせる代わりに、書く前の選び方を変えます。
 
-削った内容をコミット本文、PR、メモファイル、脚注などの別の場所へ移して残すことも防ぎます。
+- 読み手を一人決め、その人がこの件で聞くことを三つまで書き出す
+- 本文はその答えだけにして、そこで終わる
+- 読み手がすでに持っているもの、自分で導けるもの、書き手についてのもの（調べた経緯、念のための留保、作業側の事情）は問いに入れない
+- 書かなかったことは別の場所へ移さず、聞かれたら答える
 
-これらの書き癖が負担になるのは、読み手が人間のときです。エージェント同士の引き継ぎメモや作業ログでは同じ書き方が役に立つので、この Skill は人間が読む文章にだけ使います。
+回答、作業後の報告、説明、メール、チャット投稿、ドキュメント、変更や不具合の説明など、人間が読む文章全般に使います。エージェント同士の引き継ぎメモや作業ログでは、除外した選択肢や試したことを明示的に書くほうが役に立つので、そちらには使いません。
 
 ## インストール
 
@@ -34,6 +33,16 @@ claude plugin install human-facing-output@human-facing-output
 
 該当する文章を書くときに自動で読み込まれます。明示的に使うときは `/human-facing-output:human-facing-output` を実行します。
 
+### 呼んだときだけ使う版
+
+自動で読み込ませたくない場合は、代わりに `human-facing-output-manual` を入れます。Skill の中身は同じで、frontmatter に `disable-model-invocation: true` を足してあります。
+
+```
+/plugin install human-facing-output-manual@human-facing-output
+```
+
+`/human-facing-output-manual:human-facing-output` を実行したときだけ読み込まれます。
+
 Agent Skills に対応したほかのツールでは、`skills/human-facing-output/` をそのツールの skills ディレクトリに置いてください。
 
 ## 構成
@@ -41,13 +50,13 @@ Agent Skills に対応したほかのツールでは、`skills/human-facing-outp
 | パス | 内容 |
 |---|---|
 | `skills/human-facing-output/SKILL.md` | Skill の本体 |
-| `skills/human-facing-output/references/contexts.md` | 場面別の指針 |
-| `skills/human-facing-output/references/examples.md` | 書き換え例 |
+| `skills/human-facing-output/references/examples.md` | 場面の違う例 |
 | `skills/human-facing-output/references/background.md` | 方針の根拠と出典 |
+| `plugins/human-facing-output-manual/` | 呼んだときだけ使う版。`scripts/sync-manual.sh` が上の本体から作る |
 
 ## English
 
-An Agent Skill, written in Japanese, that removes RL-sandbox writing habits from human-facing text: negating alternatives nobody raised, ungrounded caveats, process narration, reported-speech attributions, and excess links. It also keeps the removed content from being moved to another place. Install it with the commands above.
+An Agent Skill, written in Japanese, for any text a human will read. Models post-trained with RL write for a grader that reads everything and penalizes only omissions, so they include whenever in doubt. This skill reverses that default: before writing, the agent picks one reader, lists at most three questions that reader would ask, answers only those, and stops. What the reader already has, can derive, or that is about the writer (process, hedges, backstory) stays out and is not moved elsewhere. Install it with the commands above. A second plugin, `human-facing-output-manual`, ships the same skill with `disable-model-invocation: true`, so it loads only when you run its slash command.
 
 ## ライセンス
 
