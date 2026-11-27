@@ -1,7 +1,6 @@
 ---
 name: human-facing-output
 description: 人間が読む文章を書く・直すときに必ず使う。
-disable-model-invocation: true
 ---
 
 # 人間向けの出力
